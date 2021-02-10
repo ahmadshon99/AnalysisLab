@@ -43,8 +43,11 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
+        $this->mapAdminRoutes();
+        $this->mapEmployeeRoutes();
+        $this->mapManagerRoutes();
+        $this->mapAccountantRoutes();
 
         //
     }
@@ -61,6 +64,30 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
+    }
+    protected function mapAdminRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin.php'));
+    }
+    protected function mapEmployeeRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/employee.php'));
+    }
+    protected function mapManagerRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/manager.php'));
+    }
+    protected function mapAccountantRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/accountant.php'));
     }
 
     /**
