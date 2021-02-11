@@ -13,18 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layouts.login');
-// });
-
-Auth::routes();
-Route::group(['prefix'=>'user','namespace'=>'users'],function(){
-    Route::get('login', 'loginController@getLogin')->name('get.admin.login');
-    // Route::post('login', 'LoginControllerAdmin@Login')->name('admin.login');
+Route::get('/', function () {
+    return view('welcome');
 });
 
+Auth::routes();
 
-
-// Route::get('Users/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 

@@ -18,7 +18,24 @@ class Admin extends Model
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','created_at','updated_at','role_id'
+        'password', 'remember_token','created_at','updated_at'
     ];
-
+    public function getLogoAttribute($val){
+        return ($val!==null)?asset('assests/'.$val) :"";
+     }
+     public function scopeSelection($query){
+         return $query->select('id','category_id','active','name','address','email','logo','phone');
+     }
+     public function getActive(){
+        return $this->active ==1?'مفعل':'غير مفعل';
+    }
+    public function setPasswordAttribute($password){
+        if(!empty($password)){
+            return $this->attributes['password']=bcrypt($password);
+        }
+    }
+    //relations
+     public function category(){
+         return $this->belongsTo('App\Models\MainCategory','category_id','id');
+     }
 }
